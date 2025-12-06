@@ -28,10 +28,10 @@ const GetUsers = () => {
         <div>
             <h1>All users</h1>
             {[...users].reverse().map((user) => (
-                <>
-                    <h3 key={user.id}>{user.name}</h3>
-                    <button onClick={() => handleDelete(user.id)}>Delete</button>
-                </>
+                <div  key={user.id}>
+                    <h3>{user.name}</h3>
+                    <button  onClick={() => handleDelete(user.id)}>Delete</button>
+                </div>
             ))}
         </div>
     )

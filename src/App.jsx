@@ -4,15 +4,22 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import GetUsers from './components/GetUsers'
 import AddUsers from './components/AddUsers'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    
+
     <>
-      <GetUsers/>
-      {/* <AddUsers/> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<GetUsers />} />
+          <Route path='/addusers' element={<AddUsers />} />
+
+        </Routes>
+
+      </BrowserRouter>
     </>
   )
 }
