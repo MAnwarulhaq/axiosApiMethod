@@ -1,27 +1,19 @@
-import axios from 'axios'
-import React, { useState } from 'react'
+import React from 'react'
 
-const AddUsers = () => {
-    const [user, setuser] = useState({
-        name: "",
-        lastname: "",
-        age: "",
-        email: ""
-    })
+const Updateuser = () => {
+     const [user, setuser] = useState({
+            name: "",
+            lastname: "",
+            age: "",
+            email: ""
+        })
+    
+        function handleChange(e) {
+            setuser({ ...user, [e.target.name]: e.target.value })
+        }
 
-    function handleChange(e) {
-        setuser({ ...user, [e.target.name]: e.target.value })
-    }
 
-    // function handleSubmit(e){
-    //     e.preventDefault()
-    //     if(user){
-    //         axios.post("http://localhost:3000/users",user)
-    //         alert("submit successful!")
-    //         console.log(user)
-    //     }
-    // }
-    function handleSubmit(e) {
+     function handleSubmit(e) {
         e.preventDefault();
 
         if (!user || Object.keys(user).length === 0) {
@@ -42,11 +34,10 @@ const AddUsers = () => {
             })
             .catch(err => console.log(err));
     }
-
-
-    return (
-        <>
-            <form action="" onSubmit={handleSubmit}>
+  return (
+    <div>
+        <h1>User Update the User</h1>
+         <form action="" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">First Name</label>
                     <input type="text" name="name" id="name" value={user.name} onChange={handleChange} />
@@ -65,8 +56,8 @@ const AddUsers = () => {
                 </div>
                 <button>Add User</button>
             </form>
-        </>
-    )
+    </div>
+  )
 }
 
-export default AddUsers
+export default Updateuser
