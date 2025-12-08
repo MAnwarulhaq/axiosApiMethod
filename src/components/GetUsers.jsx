@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const GetUsers = () => {
     const [users, setUsers] = useState([])
@@ -30,6 +31,10 @@ const GetUsers = () => {
             {[...users].reverse().map((user) => (
                 <div  key={user.id}>
                     <h3>{user.name}</h3>
+                    <Link to={`/updateuser/${user.id}`}>
+                    <button  onClick={() => handleDelete(user.id)}>Edite</button>
+                    </Link>
+
                     <button  onClick={() => handleDelete(user.id)}>Delete</button>
                 </div>
             ))}

@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import GetUsers from './components/GetUsers'
 import AddUsers from './components/AddUsers'
+import Navbar from './components/Navbar'
+import Updateuser from './components/Updateuser'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -16,6 +18,7 @@ function App() {
         <Routes>
           <Route path='/' element={<GetUsers />} />
           <Route path='/addusers' element={<AddUsers />} />
+          <Route path='/updateuser/:id' element={<Updateuser />} />
 
         </Routes>
 
