@@ -8,7 +8,7 @@ const Navbar = () => {
          <h1>Axios</h1>
       </Link>
      
-      <Link to="/adduser">
+      <Link to="/addusers">
         <p>Add User</p>
       </Link>
       <Link to="/updateuser">

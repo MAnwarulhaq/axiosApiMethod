@@ -17,13 +17,26 @@ const GetUsers = () => {
     //     })
 
     // }
-    function handleDelete(id) {
-        axios.delete(`http://localhost:3000/users/${id}`)
-            .then(() => {
-                setUsers(prev => prev.filter(user => user.id !== id));   
-            })
-            .catch(err => console.log(err));
+    // function handleDelete(id) {
+    //     axios.delete(`http://localhost:3000/users/${id}`)
+    //         .then(() => {
+    //             setUsers(prev => prev.filter(user => user.id !== id));   
+    //         })
+    //         .catch(err => console.log(err));
+    // }
+function handleDelete(id) {
+    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+
+    if (!confirmDelete) {
+        return; // user cancel karday to delete na ho
     }
+
+    axios.delete(`http://localhost:3000/users/${id}`)
+        .then(() => {
+            setUsers(prev => prev.filter(user => user.id !== id));
+        })
+        .catch(err => console.log(err));
+}
 
     return (
         <div>
