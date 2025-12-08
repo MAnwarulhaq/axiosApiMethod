@@ -1,66 +1,72 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
+
 const Updateuser = () => {
-    const {id}=useParams()
+    const { id } = useParams()
     console.log(id)
 
-     const [user, setuser] = useState({
-            name: "",
-            lastname: "",
-            age: "",
-            email: ""
-        })
+    const [user, setUser] = useState({
+        name: "",
+        lastname: "",
+        age: "",
+        email: ""
+    })
+
     
-        function handleChange(e) {
-            setuser({ ...user, [e.target.name]: e.target.value })
-        }
-
-
-     function handleSubmit(e) {
-        e.preventDefault();
-
-        if (!user || Object.keys(user).length === 0) {
-            alert("Please fill the form");
-            return;
-        }
-
-        axios.post("http://localhost:3000/users", user)
-            .then(() => {
-                alert("Submit Successful!");
-                console.log(user);
-                setuser({
-                    name: "",
-                    lastname: "",
-                    age: "",
-                    email: ""
-                }); // clear form
+    useEffect(() => {
+        axios.get(`http://localhost:3000/users/${id}`)
+            .then(res => {
+                setUser(res.data)
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
+    }, [id])
+
+    
+    function handleChange(e) {
+        setUser({ ...user, [e.target.name]: e.target.value })
     }
-  return (
-    <div>
-        <h1>User Update the User</h1>
-         <form action="" onSubmit={handleSubmit}>
+
+    
+    function handleSubmit(e) {
+        e.preventDefault()
+
+        axios.put(`http://localhost:3000/users/${id}`, user)
+            .then(() => {
+                alert("User Updated Successfully!")
+            })
+            .catch(err => console.log(err))
+    }
+
+    return (
+        <div>
+            <h1>Update User</h1>
+
+            <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="name">First Name</label>
-                    <input type="text" name="name" id="name" value={user.name} onChange={handleChange} />
+                    <label>First Name</label>
+                    <input type="text" name="name" value={user.name} onChange={handleChange} />
                 </div>
+
                 <div>
-                    <label htmlFor="lastname">Last Name</label>
-                    <input type="text" name="lastname" id="lastname" value={user.lastname} onChange={handleChange} />
+                    <label>Last Name</label>
+                    <input type="text" name="lastname" value={user.lastname} onChange={handleChange} />
                 </div>
+
                 <div>
-                    <label htmlFor="age">Age</label>
-                    <input type="number" name="age" id="age" value={user.age} onChange={handleChange} />
+                    <label>Age</label>
+                    <input type="number" name="age" value={user.age} onChange={handleChange} />
                 </div>
+
                 <div>
-                    <label htmlFor="email">Email</label>
-                    <input type="text" name="email" id="email" value={user.email} onChange={handleChange} />
+                    <label>Email</label>
+                    <input type="text" name="email" value={user.email} onChange={handleChange} />
                 </div>
-                <button>Add User</button>
+
+                <button>Update User</button>
             </form>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default Updateuser

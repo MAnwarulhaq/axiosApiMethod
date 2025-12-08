@@ -32,7 +32,7 @@ const GetUsers = () => {
                 <div  key={user.id}>
                     <h3>{user.name}</h3>
                     <Link to={`/updateuser/${user.id}`}>
-                    <button  onClick={() => handleDelete(user.id)}>Edite</button>
+                    <button >Edite</button>
                     </Link>
 
                     <button  onClick={() => handleDelete(user.id)}>Delete</button>

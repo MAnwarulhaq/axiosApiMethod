@@ -15,6 +15,7 @@ function App() {
 
     <>
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path='/' element={<GetUsers />} />
           <Route path='/addusers' element={<AddUsers />} />
